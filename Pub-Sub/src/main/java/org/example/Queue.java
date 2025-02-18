@@ -4,22 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Queue {
-    private Map<String, ITopic> topics;
+    private Map<String, TopicHandler> topicProcessors;
 
     Queue(){
-        this.topics = new HashMap<>();
+        this.topicProcessors = new HashMap<>();
     }
 
     void addTopic(String topicId, ITopic topic){
-        this.topics.put(topicId, topic);
+        TopicHandler topicHandler = new TopicHandler(topic);
+        this.topicProcessors.put(topicId, topicHandler);
     }
 
-    String publish(String topicId, IMessage message){
-        ITopic topic = this.topics.get(topicId);
-        if(topic == null){
-            return "Topic not found";
-        }
-        topic.publish(message);
-        return "Message published";
+    public void publish(ITopic topic, IMessage message){
+        topic.addMessage(message);
+        System.out.println("Message published to topic: " + topic.getId());
+        new Thread(() -> topicProcessors.get(topic.getId()).publish()).start();
     }
 }

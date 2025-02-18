@@ -1,7 +1,11 @@
 package org.example;
 
+import java.util.List;
+
 public interface ITopic {
     String getId();
-    void publish(IMessage message);
-    void addConsumer(IConsumer consumer);
+    List<IMessage> getMessages();
+    List<TopicSubscriber> getConsumers();
+    void addMessage(IMessage message);
+    void addConsumer(TopicSubscriber consumer);
 }
