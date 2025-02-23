@@ -22,9 +22,10 @@ public class Piece {
     @Setter
     private Cell currentCell;
 
-    void Piece(PieceType pieceType, Color color){
+    public Piece(PieceType pieceType, List<PossibleMoveProvider> moveProviders, Color color){
        this.isKilled = false;
        this.pieceType = pieceType;
+       this.moveProviders = moveProviders;
        this.color = color;
     }
 

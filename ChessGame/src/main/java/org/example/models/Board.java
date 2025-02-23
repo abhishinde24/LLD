@@ -1,6 +1,10 @@
 package org.example.models;
 
+import org.example.MovePiece;
 import org.example.types.Color;
+import org.example.types.PieceType;
+
+import java.util.ArrayList;
 
 public class Board {
     private int row; // y
@@ -16,6 +20,40 @@ public class Board {
                 cells[i][j] = new Cell(i, j);
             }
         }
+    }
+
+    public void addPiece(Player player, int pawnRow, int pieceRow, Color color){
+
+        // setting up pawn
+        for(int colIdx = 0; colIdx < this.col; colIdx++){
+           this.getCell(colIdx, pawnRow).setPiece( new Piece( PieceType.PAWN, new ArrayList<>(), color));
+           player.addPiece(this.getCell(colIdx, pawnRow).getPiece());
+        }
+
+        // setting up pieces
+        this.getCell(0, pieceRow).setPiece( new Piece(PieceType.BISHOP, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(1, pieceRow).setPiece( new Piece(PieceType.KNIGHT, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(2, pieceRow).setPiece( new Piece(PieceType.ROOK, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(3, pieceRow).setPiece( new Piece(PieceType.QUEEN, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(4, pieceRow).setPiece( new Piece(PieceType.KING, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(5, pieceRow).setPiece( new Piece(PieceType.ROOK, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(6, pieceRow).setPiece( new Piece(PieceType.KNIGHT, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
+
+        this.getCell(7, pieceRow).setPiece( new Piece(PieceType.BISHOP, new ArrayList<>(), color));
+        player.addPiece(this.getCell(0, pieceRow).getPiece());
     }
 
     /*
